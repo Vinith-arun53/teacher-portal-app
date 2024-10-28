@@ -1,0 +1,12 @@
+<% if @student.errors.any? %>
+
+  alert('Update failed: check for errors');
+  // Render the form with errors in the modal's body without closing it
+  $('#editModal .modal-body').html('<%= j render("form", student_subject: @student) %>');
+<% else %>
+
+  alert('Update failed: check for errors');
+  // Close the modal on success
+  $('#editModal').modal('hide');
+
+<% end %>

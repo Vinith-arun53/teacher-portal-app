@@ -1,0 +1,55 @@
+
+<div class="home-container">
+<div class="table-container">
+<p style="color: green"><%= notice %></p>
+<div id="users">
+  <table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Subject</th>
+      <th>Mark</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr id="student-row<%=student.id%>">
+        <td><%= student.s_student_name %></td>
+        <td><%= student.s_name %></td>
+        <td><%= student.s_mark %></td>
+        <td>
+          <!-- Dropdown Menu for Actions -->
+          <div class="dropdown">
+            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton<%= student.id %>" data-bs-toggle="dropdown" aria-expanded="false">
+              
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton<%= student.id %>">
+              <li>
+                <%= link_to 'Edit', edit_student_subject_path(student), remote: true, class: 'dropdown-item', data: { bs_toggle: "modal", bs_target: "#editModal" } %>
+              </li>
+              <li>
+                <%= link_to 'Delete', student_subject_path(student), method: :delete, data: { confirm: 'Are you sure?' }, class: 'dropdown-item' %>
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body d-flex flex-row justify-content-center">
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to "Add", new_student_subject_path, class: "btn btn-dark add-student-btn",remote: true %>
+</div>
+</div>
+

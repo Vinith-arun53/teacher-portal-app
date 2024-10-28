@@ -1,0 +1,32 @@
+<%= form_with(model: student_subject, remote: true, data: { turbo: false }) do |form| %>
+  <% if student_subject.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(student_subject.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% student_subject.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label "Name", style: "display: block" %>
+    <%= form.text_field :s_student_name %>
+  </div>
+
+  <div>
+    <%= form.label "Subject", style: "display: block" %>
+    <%= form.text_field :s_name %>
+  </div>
+
+  <div>
+    <%= form.label "Mark", style: "display: block" %>
+    <%= form.text_field :s_mark %>
+  </div>
+
+  <div class="submit">
+    <%= form.submit (student_subject.new_record? ? "Add" : "Update"), class:"btn btn-dark" %>
+  </div>
+<% end %>
